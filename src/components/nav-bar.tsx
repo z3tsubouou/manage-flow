@@ -29,10 +29,7 @@ const NavbarComponent = () => {
   ];
 
   return (
-    <Navbar
-      onMenuOpenChange={setIsMenuOpen}
-      className="w-full flex justify-between px-2 py-3"
-    >
+    <Navbar onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
