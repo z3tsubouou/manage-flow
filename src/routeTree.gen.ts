@@ -16,15 +16,27 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
-const AboutLazyImport = createFileRoute('/about')()
+const SignUpLazyImport = createFileRoute('/sign-up')()
+const LoginLazyImport = createFileRoute('/login')()
+const BookmarksLazyImport = createFileRoute('/bookmarks')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
+const SignUpLazyRoute = SignUpLazyImport.update({
+  path: '/sign-up',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./routes/sign-up.lazy').then((d) => d.Route))
+
+const LoginLazyRoute = LoginLazyImport.update({
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
+
+const BookmarksLazyRoute = BookmarksLazyImport.update({
+  path: '/bookmarks',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/bookmarks.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -42,11 +54,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyImport
+    '/bookmarks': {
+      id: '/bookmarks'
+      path: '/bookmarks'
+      fullPath: '/bookmarks'
+      preLoaderRoute: typeof BookmarksLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/sign-up': {
+      id: '/sign-up'
+      path: '/sign-up'
+      fullPath: '/sign-up'
+      preLoaderRoute: typeof SignUpLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -56,7 +82,9 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
-  AboutLazyRoute,
+  BookmarksLazyRoute,
+  LoginLazyRoute,
+  SignUpLazyRoute,
 })
 
 /* prettier-ignore-end */
@@ -68,14 +96,22 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about"
+        "/bookmarks",
+        "/login",
+        "/sign-up"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
     },
-    "/about": {
-      "filePath": "about.lazy.tsx"
+    "/bookmarks": {
+      "filePath": "bookmarks.lazy.tsx"
+    },
+    "/login": {
+      "filePath": "login.lazy.tsx"
+    },
+    "/sign-up": {
+      "filePath": "sign-up.lazy.tsx"
     }
   }
 }

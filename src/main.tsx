@@ -1,11 +1,12 @@
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
 import "./styles.css";
 
 // Import the generated route tree
-import { routeTree } from "./routeTree.gen";
 import { NextUIProvider } from "@nextui-org/system";
+import { routeTree } from "./routeTree.gen";
 
 // Create a new router instance
 const router = createRouter({ routeTree });
@@ -24,7 +25,9 @@ if (!rootElement.innerHTML) {
   root.render(
     <StrictMode>
       <NextUIProvider>
-        <RouterProvider router={router} />
+        <NextThemesProvider attribute="class" defaultTheme="dark">
+          <RouterProvider router={router} />
+        </NextThemesProvider>
       </NextUIProvider>
     </StrictMode>,
   );
