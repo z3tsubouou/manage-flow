@@ -15,7 +15,7 @@ const TanStackRouterDevtools = import.meta.env.PROD
 
 export const Route = createRootRoute({
   component: () => (
-    <div className="flex flex-col min-h-dvh bg-[#f7f7f7] dark:bg-[#1f1f28]">
+    <div className="flex flex-col min-h-dvh bg-[#f7f7f7] dark:bg-[#011]">
       <header>
         <NavbarComponent />
       </header>

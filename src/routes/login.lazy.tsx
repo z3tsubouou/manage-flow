@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
 import { Input } from "@nextui-org/input";
 import { Button } from "@nextui-org/button";
+import { useTranslation } from "react-i18next";
 
 const schema = yup
   .object({
@@ -15,6 +16,7 @@ const schema = yup
 type FormData = yup.InferType<typeof schema>;
 
 const Login = () => {
+  const { t } = useTranslation();
   const { handleSubmit, control } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
@@ -65,7 +67,7 @@ const Login = () => {
             />
           )}
         />
-        <Button type="submit">Sign in</Button>
+        <Button type="submit">{t("login")}</Button>
       </form>
     </div>
   );

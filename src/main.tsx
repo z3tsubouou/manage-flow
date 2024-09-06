@@ -3,6 +3,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import "./styles.css";
+import "./i18n.ts";
 
 // Import the generated route tree
 import { NextUIProvider } from "@nextui-org/system";

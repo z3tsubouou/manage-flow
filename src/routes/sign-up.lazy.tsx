@@ -3,6 +3,7 @@ import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import { Controller, useForm } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import * as yup from "yup";
 
 const schema = yup
@@ -19,6 +20,7 @@ const schema = yup
 type FormData = yup.InferType<typeof schema>;
 
 const SignUpComponent = () => {
+  const { t } = useTranslation();
   const { handleSubmit, control } = useForm<FormData>({
     resolver: yupResolver(schema),
   });
@@ -90,7 +92,7 @@ const SignUpComponent = () => {
             />
           )}
         />
-        <Button type="submit">Sign up</Button>
+        <Button type="submit">{t("signup")}</Button>
       </form>
     </div>
   );

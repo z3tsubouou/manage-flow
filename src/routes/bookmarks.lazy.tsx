@@ -1,29 +1,16 @@
-import { Button } from "@nextui-org/button";
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { WebviewWindow } from "@tauri-apps/api/webviewWindow";
+import BookmarkContent from "../components/bookmark-content";
+import BookmarkMenu from "../components/bookmark-menu";
 
 const Bookmarks = () => {
   return (
-    <div className="p-2">
-      <Button
-        onClick={() => {
-          const webview = new WebviewWindow("theUniqueLabel", {
-            url: "https://www.google.com/",
-          });
-          // since the webview window is created asynchronously,
-          // Tauri emits the `tauri://created` and `tauri://error` to notify you of the creation response
-          webview.once("tauri://created", function () {
-            console.log("webview window successfully created");
-            // webview window successfully created
-          });
-          webview.once("tauri://error", function (e) {
-            console.log(e.payload);
-            // an error occurred during webview window creation
-          });
-        }}
-      >
-        tauri api
-      </Button>
+    <div className="flex w-full">
+      <div className="flex-none w-64 p-2">
+        <BookmarkMenu />
+      </div>
+      <div className="flex-1 p-2">
+        <BookmarkContent />
+      </div>
     </div>
   );
 };

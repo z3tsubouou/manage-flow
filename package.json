@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
+    "@nextui-org/accordion": "^2.0.38",
     "@nextui-org/button": "^2.0.37",
+    "@nextui-org/dropdown": "^2.1.29",
     "@nextui-org/input": "^2.2.4",
     "@nextui-org/navbar": "^2.0.36",
     "@nextui-org/system": "^2.2.5",
@@ -20,11 +22,14 @@
     "@tauri-apps/api": ">=2.0.0-rc.0",
     "@tauri-apps/plugin-shell": ">=2.0.0-rc.0",
     "framer-motion": "^11.5.2",
+    "i18next": "^23.14.0",
+    "i18next-browser-languagedetector": "^8.0.0",
     "lucide-react": "^0.438.0",
     "next-themes": "^0.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.53.0",
+    "react-i18next": "^15.0.1",
     "yup": "^1.4.0"
   },
   "devDependencies": {
