@@ -4,9 +4,9 @@ I am developing this software to improve my and others productivity
 
 ## Goals
 
-- []: Bookmarks
-- []: Flow
-- []: Notepad
+- [] Bookmarks
+- [] Flow
+- [] Notepad
 
 ## Recommended IDE Setup
 
