@@ -8,6 +8,7 @@ import { Button } from "@nextui-org/button";
 const schema = yup
   .object({
     email: yup.string().email().required(),
+    password: yup.string().required(),
   })
   .required();
 
@@ -36,7 +37,27 @@ const Login = () => {
               type="email"
               label="Email"
               variant="bordered"
-              placeholder="Enter your email"
+              size="lg"
+              isInvalid={!!error?.message}
+              color={error?.message ? "danger" : "default"}
+              errorMessage={error?.message}
+            />
+          )}
+        />
+        <Controller
+          name="password"
+          control={control}
+          render={({
+            field: { onChange, onBlur, value },
+            fieldState: { error },
+          }) => (
+            <Input
+              onChange={onChange}
+              onBlur={onBlur}
+              value={value}
+              type="password"
+              label="Password"
+              variant="bordered"
               size="lg"
               isInvalid={!!error?.message}
               color={error?.message ? "danger" : "default"}
