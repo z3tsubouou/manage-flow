@@ -16,7 +16,7 @@ const BookmarkMenuAction = () => {
       classNames={{
         base: "before:bg-default-200", // change arrow background
         content:
-          "py-1 px-1 border border-default-200 bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black",
+          "py-1 px-1 border border-default-200 from-white to-default-200 dark:from-default-50 dark:to-black",
       }}
     >
       <DropdownTrigger>
@@ -24,7 +24,10 @@ const BookmarkMenuAction = () => {
           <Ellipsis />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu variant="faded" aria-label="Dropdown menu with description">
+      <DropdownMenu
+        variant="bordered"
+        aria-label="Dropdown menu with description"
+      >
         <DropdownSection title="Actions">
           <DropdownItem key="new" shortcut="⌘N" description="Create a new file">
             New file
@@ -66,7 +69,7 @@ const BookmarkMenu = () => {
 
   return (
     <Accordion
-      variant="splitted"
+      variant="bordered"
       selectionMode="multiple"
       isCompact
       disableIndicatorAnimation
