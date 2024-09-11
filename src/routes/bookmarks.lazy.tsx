@@ -5,8 +5,8 @@ import BookmarkHeader from "../components/bookmark/bookmark-header";
 
 const Bookmarks = () => {
   return (
-    <div className="flex w-full">
-      <div className="flex-none w-64 p-2">
+    <div className="flex flex-col lg:flex-row w-full">
+      <div className="flex-none lg:w-64 p-2">
         <BookmarkMenu />
       </div>
       <div className="flex-1 p-2 space-y-2">

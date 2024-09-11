@@ -4,7 +4,7 @@ import { Image } from "@nextui-org/image";
 
 const BookmarkContent = () => {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-6">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
       <Card isFooterBlurred radius="lg" className="border-none">
         <Image
           alt="Woman listing to music"
