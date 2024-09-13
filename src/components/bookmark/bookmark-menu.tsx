@@ -7,6 +7,7 @@ import {
   DropdownSection,
   DropdownTrigger,
 } from "@nextui-org/dropdown";
+import { Listbox, ListboxItem } from "@nextui-org/listbox";
 import { Ellipsis } from "lucide-react";
 
 const BookmarkMenuAction = () => {
@@ -73,6 +74,7 @@ const BookmarkMenu = () => {
       selectionMode="multiple"
       isCompact
       disableIndicatorAnimation
+      defaultExpandedKeys={["anchor", "moon", "sun"]}
     >
       <AccordionItem
         key="anchor"
@@ -80,7 +82,14 @@ const BookmarkMenu = () => {
         indicator={<BookmarkMenuAction />}
         title="Anchor"
       >
-        {defaultContent}
+        <Listbox aria-label="Actions" onAction={(key) => alert(key)}>
+          <ListboxItem key="new">New file</ListboxItem>
+          <ListboxItem key="copy">Copy link</ListboxItem>
+          <ListboxItem key="edit">Edit file</ListboxItem>
+          <ListboxItem key="delete" className="text-danger" color="danger">
+            Delete file
+          </ListboxItem>
+        </Listbox>
       </AccordionItem>
       <AccordionItem
         key="moon"
