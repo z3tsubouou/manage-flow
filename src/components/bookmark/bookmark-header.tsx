@@ -1,3 +1,4 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import {
@@ -9,9 +10,23 @@ import {
   useDisclosure,
 } from "@nextui-org/modal";
 import { PlusIcon, SearchIcon } from "lucide-react";
+import { Controller, useForm } from "react-hook-form";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    url: yup.string().url().required(),
+  })
+  .required();
+
+type FormData = yup.InferType<typeof schema>;
 
 const AddBookmarkModal = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { handleSubmit, control } = useForm<FormData>({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = (data: FormData) => console.log(data);
 
   return (
     <>
@@ -21,39 +36,42 @@ const AddBookmarkModal = () => {
       <Modal size="3xl" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
-            <>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <ModalHeader className="flex flex-col gap-1">
-                Modal Title
+                Add bookmark
               </ModalHeader>
               <ModalBody>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat
-                  consequat elit dolor adipisicing. Mollit dolor eiusmod sunt ex
-                  incididunt cillum quis. Velit duis sit officia eiusmod Lorem
-                  aliqua enim laboris do dolor eiusmod. Et mollit incididunt
-                  nisi consectetur esse laborum eiusmod pariatur proident Lorem
-                  eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
+                <Controller
+                  name="url"
+                  control={control}
+                  render={({
+                    field: { onChange, onBlur, value },
+                    fieldState: { error },
+                  }) => (
+                    <Input
+                      onChange={onChange}
+                      onBlur={onBlur}
+                      value={value}
+                      type="text"
+                      label="URL"
+                      variant="bordered"
+                      size="lg"
+                      isInvalid={!!error?.message}
+                      color={error?.message ? "danger" : "default"}
+                      errorMessage={error?.message}
+                    />
+                  )}
+                />
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
-                  Close
+                  Cancel
                 </Button>
-                <Button color="primary" onPress={onClose}>
-                  Action
+                <Button type="submit" color="primary">
+                  Add
                 </Button>
               </ModalFooter>
-            </>
+            </form>
           )}
         </ModalContent>
       </Modal>
@@ -63,7 +81,7 @@ const AddBookmarkModal = () => {
 
 const BookmarkHeader = () => {
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between items-center space-x-2">
       <div>
         <Input
           label="Search"
