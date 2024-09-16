@@ -14,7 +14,7 @@ const BookmarkDeleteModal = ({
   onOpenChange: (open: boolean) => void;
 }) => {
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
         {(onClose) => (
           <form>

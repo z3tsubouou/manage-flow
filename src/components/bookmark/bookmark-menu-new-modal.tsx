@@ -32,7 +32,7 @@ const BookmarkMenuNewModal = ({
   const onSubmit = (data: FormData) => console.log(data);
 
   return (
-    <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+    <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
       <ModalContent>
         {(onClose) => (
           <form onSubmit={handleSubmit(onSubmit)}>

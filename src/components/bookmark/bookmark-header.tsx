@@ -33,7 +33,7 @@ const AddBookmarkModal = () => {
       <Button color="primary" onPress={onOpen}>
         <PlusIcon />
       </Button>
-      <Modal size="3xl" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal backdrop="blur" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose) => (
             <form onSubmit={handleSubmit(onSubmit)}>

@@ -17,6 +17,7 @@ const BookmarkMenuAction = () => {
     <>
       <Dropdown
         showArrow
+        backdrop="blur"
         classNames={{
           base: "before:bg-default-200", // change arrow background
           content:
