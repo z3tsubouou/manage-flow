@@ -50,6 +50,8 @@ const BookmarkAction = () => {
             >
               Edit category
             </DropdownItem>
+          </DropdownSection>
+          <DropdownSection title="Danger zone">
             <DropdownItem
               key="delete"
               className="text-danger"
