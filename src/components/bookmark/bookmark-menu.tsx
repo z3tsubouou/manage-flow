@@ -4,14 +4,13 @@ import { useNavigate } from "@tanstack/react-router";
 import { Key } from "react";
 import BookmarkAction from "./bookmark-action";
 import BookmarkMenuAction from "./bookmark-menu-action";
-import { Inbox, Webcam } from "lucide-react";
 
 const BookmarkMenu = () => {
   const navigate = useNavigate();
 
   const handleAction = (key: Key) => {
     switch (key) {
-      case "unsorted":
+      case "all":
         navigate({
           to: "/bookmarks",
         });
@@ -40,14 +39,8 @@ const BookmarkMenu = () => {
         title="Categories"
       >
         <Listbox aria-label="Actions" onAction={(key) => handleAction(key)}>
-          <ListboxItem startContent={<Inbox />} key="unsorted">
-            Unsorted
-          </ListboxItem>
-          <ListboxItem
-            startContent={<Webcam />}
-            key="social"
-            endContent={<BookmarkAction />}
-          >
+          <ListboxItem key="all">All bookmarks</ListboxItem>
+          <ListboxItem key="social" endContent={<BookmarkAction />}>
             Social
           </ListboxItem>
         </Listbox>

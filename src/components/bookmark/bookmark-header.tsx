@@ -9,6 +9,7 @@ import {
   ModalHeader,
   useDisclosure,
 } from "@nextui-org/modal";
+import { useParams } from "@tanstack/react-router";
 import { PlusIcon, SearchIcon } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -80,25 +81,32 @@ const AddBookmarkModal = () => {
 };
 
 const BookmarkHeader = () => {
+  const { category } = useParams({ strict: false });
+
   return (
-    <div className="flex justify-between items-center space-x-2">
-      <div>
-        <Input
-          label="Search"
-          isClearable
-          radius="lg"
-          variant="bordered"
-          placeholder="Type to search..."
-          startContent={
-            <SearchIcon
-              size={16}
-              className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0"
-            />
-          }
-        />
-      </div>
-      <div>
-        <AddBookmarkModal />
+    <div className="space-y-2">
+      <h1 className="font-bold text-3xl xs:text-center">
+        {category || "All bookmarks"}
+      </h1>
+      <div className="flex justify-between items-center space-x-2">
+        <div>
+          <Input
+            label="Search"
+            isClearable
+            radius="lg"
+            variant="bordered"
+            placeholder="Type to search..."
+            startContent={
+              <SearchIcon
+                size={16}
+                className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0"
+              />
+            }
+          />
+        </div>
+        <div>
+          <AddBookmarkModal />
+        </div>
       </div>
     </div>
   );
