@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as BookmarksImport } from './routes/_bookmarks'
+import { Route as BookmarksBookmarksCategoryImport } from './routes/_bookmarks/bookmarks/$category'
 
 // Create Virtual Routes
 
@@ -22,9 +23,6 @@ const LoginLazyImport = createFileRoute('/login')()
 const IndexLazyImport = createFileRoute('/')()
 const BookmarksBookmarksIndexLazyImport = createFileRoute(
   '/_bookmarks/bookmarks/',
-)()
-const BookmarksBookmarksCategoryLazyImport = createFileRoute(
-  '/_bookmarks/bookmarks/$category',
 )()
 
 // Create/Update Routes
@@ -57,13 +55,12 @@ const BookmarksBookmarksIndexLazyRoute =
     import('./routes/_bookmarks/bookmarks/index.lazy').then((d) => d.Route),
   )
 
-const BookmarksBookmarksCategoryLazyRoute =
-  BookmarksBookmarksCategoryLazyImport.update({
+const BookmarksBookmarksCategoryRoute = BookmarksBookmarksCategoryImport.update(
+  {
     path: '/bookmarks/$category',
     getParentRoute: () => BookmarksRoute,
-  } as any).lazy(() =>
-    import('./routes/_bookmarks/bookmarks/$category.lazy').then((d) => d.Route),
-  )
+  } as any,
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -101,7 +98,7 @@ declare module '@tanstack/react-router' {
       id: '/_bookmarks/bookmarks/$category'
       path: '/bookmarks/$category'
       fullPath: '/bookmarks/$category'
-      preLoaderRoute: typeof BookmarksBookmarksCategoryLazyImport
+      preLoaderRoute: typeof BookmarksBookmarksCategoryImport
       parentRoute: typeof BookmarksImport
     }
     '/_bookmarks/bookmarks/': {
@@ -119,7 +116,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   BookmarksRoute: BookmarksRoute.addChildren({
-    BookmarksBookmarksCategoryLazyRoute,
+    BookmarksBookmarksCategoryRoute,
     BookmarksBookmarksIndexLazyRoute,
   }),
   LoginLazyRoute,
@@ -157,7 +154,7 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "sign-up.lazy.tsx"
     },
     "/_bookmarks/bookmarks/$category": {
-      "filePath": "_bookmarks/bookmarks/$category.lazy.tsx",
+      "filePath": "_bookmarks/bookmarks/$category.tsx",
       "parent": "/_bookmarks"
     },
     "/_bookmarks/bookmarks/": {
