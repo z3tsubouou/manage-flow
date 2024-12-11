@@ -1,6 +1,6 @@
 export const en = {
-  translation: {
-    login: "Login",
-    signup: "Sign Up",
-  },
+	translation: {
+		login: 'Login',
+		signup: 'Sign Up'
+	}
 };
